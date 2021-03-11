@@ -3,6 +3,7 @@ package com.revature.repository.impl;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.revature.model.Address;
 import com.revature.model.Appointment;
@@ -13,7 +14,12 @@ import com.revature.model.User;
 import com.revature.repository.AdminRepository;
 import com.revature.util.HibernateSessionFactory;
 
+@Repository(value = "adminRepository")
 public class AdminRepositoryImpl implements AdminRepository {
+	
+	public AdminRepositoryImpl() {
+		
+	}
 
 	//--------------------------ADD NEW DOCTOR TO THE SYSTEM
 
