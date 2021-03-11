@@ -1,0 +1,4 @@
+2021-03-10 19:42:44,298 ERROR o.h.e.j.s.SqlExceptionHelper [main] ERROR: insert or update on table "login" violates foreign key constraint "fkd0yiqou4h6fgoolm341rbjx1u"
+  Detail: Key (user_userid)=(6) is not present in table "user".
+2021-03-10 20:13:07,749 ERROR o.h.e.j.s.SqlExceptionHelper [main] ERROR: insert or update on table "user" violates foreign key constraint "fka4j95jea7ygwbc2oqyw86fbov"
+  Detail: Key (address_addressid)=(1) is not present in table "address".

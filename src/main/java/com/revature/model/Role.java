@@ -2,6 +2,7 @@ package com.revature.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +12,7 @@ public class Role {
 	
 	@Column
 	private int roleId;
+	@Id
 	@Column
 	private String role;
 	public Role() {
