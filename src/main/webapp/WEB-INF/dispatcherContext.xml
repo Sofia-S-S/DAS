@@ -27,4 +27,5 @@
 		<property name="suffix" value=".html"></property>
 	</bean>
 	
+	
 	</beans>

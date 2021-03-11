@@ -50,8 +50,12 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- We need to tell Hibernate where the mapped resources are; it doesn't
 		auto detect the resources. -->
-		<mapping class="com.revature.model.Users"/>
-		<mapping class="com.revature.model.Flight"/>
-		<mapping class="com.revature.model.UserFlight"/>
+		<mapping class="com.revature.model.Address"/>
+		<mapping class="com.revature.model.Appointment"/>
+		<mapping class="com.revature.model.Bill"/>
+		<mapping class="com.revature.model.Login"/>
+		<mapping class="com.revature.model.PatientDoctor"/>
+		<mapping class="com.revature.model.Role"/>
+		<mapping class="com.revature.model.User"/>
 	</session-factory>
 </hibernate-configuration>
