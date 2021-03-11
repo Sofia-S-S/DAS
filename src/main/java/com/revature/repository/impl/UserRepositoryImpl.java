@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import com.revature.model.Address;
+import com.revature.model.Login;
+import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.repository.UserRepository;
 import com.revature.util.HibernateSessionFactory;
@@ -16,7 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
 	Transaction tx;
 
 	@Override
-	public void registerNewPatient(User user) {
+	public void registerNewPatient(User user, Address address, Login login, Role role) {
 		
 		// Try block that will start and automatically close a session
 		try (Session session = HibernateSessionFactory.getSession()) {
