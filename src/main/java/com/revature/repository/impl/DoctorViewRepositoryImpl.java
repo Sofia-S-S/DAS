@@ -2,13 +2,14 @@ package com.revature.repository.impl;
 
 import java.util.List;
 
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Appointment;
-import com.revature.model.User;
+import com.revature.model.PatientDoctor;
 import com.revature.repository.DoctorViewRepository;
 import com.revature.util.HibernateSessionFactory;
 
@@ -16,14 +17,14 @@ import com.revature.util.HibernateSessionFactory;
 public class DoctorViewRepositoryImpl implements DoctorViewRepository{
 
 	@Override
-	public List<User> viewSelfPatients(int doctorId) {
-		List<User> viewSelfPatients = null;
+	public List<PatientDoctor> viewSelfPatients(int doctorId) {
+		List<PatientDoctor> viewSelfPatients = null;
 		Session session = null;
 		Transaction transaction = null;
 		try {
 			session = HibernateSessionFactory.getSession();
 			transaction = session.beginTransaction();
-			viewSelfPatients = session.createQuery("FROM PatientDoctor WHERE doctor.userId = :doctorId", User.class)
+			viewSelfPatients = session.createQuery("FROM PatientDoctor WHERE doctor.userId = :doctorId", PatientDoctor.class)
 					.setParameter("doctorId", doctorId).getResultList();
 			transaction.commit();
 		}catch(HibernateException e) {

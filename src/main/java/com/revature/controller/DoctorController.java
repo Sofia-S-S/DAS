@@ -2,6 +2,7 @@ package com.revature.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Appointment;
-import com.revature.model.User;
+import com.revature.model.PatientDoctor;
 import com.revature.service.DoctorViewService;
 import com.revature.service.impl.DoctorViewServiceImpl;
 
@@ -37,8 +38,8 @@ public class DoctorController {
 	}
 	
 	@GetMapping(path = "/viewSelfPatients", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<User> viewSelfPatients(@RequestParam int doctorId) {
-		List<User> viewSelfPatients = null;
+	public List<PatientDoctor> viewSelfPatients(@RequestParam int doctorId) {
+		List<PatientDoctor> viewSelfPatients = null;
 		viewSelfPatients = this.doctorViewService.viewSelfPatients(doctorId);
 		return viewSelfPatients;
 	}
