@@ -1,18 +1,26 @@
 package com.revature.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
 import com.revature.model.Login;
 import com.revature.model.Role;
 import com.revature.model.User;
-import com.revature.repository.AdminRepository;
 import com.revature.repository.impl.AdminRepositoryImpl;
 import com.revature.service.AdminService;
 
+@Service(value = "adminService")
 public class AdminServiceImpl implements AdminService{
 	
-	AdminRepository repo = new AdminRepositoryImpl();
+	private AdminRepositoryImpl adminRepository;
+	
+	@Autowired
+	public void setAdminRepository(AdminRepositoryImpl adminRepository) {
+		this.adminRepository = adminRepository;
+	}
 
 	//Creating new doctor by passing Role #2 to createUser method
 	@Override
@@ -20,7 +28,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		Role role = new Role(2, "doctor");
 
-		repo.createDoctor(address, role, doctor, login);
+		adminRepository.createDoctor(address, role, doctor, login);
 		
 	}
 
@@ -28,14 +36,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void createSpot(Appointment spot) {
 
-		repo.createSpot(spot);
+		adminRepository.createSpot(spot);
 		
 	}
 
 	@Override
 	public void createBill(Bill bill) {
 
-		repo.createBill(bill);
+		adminRepository.createBill(bill);
 		
 	}
 
