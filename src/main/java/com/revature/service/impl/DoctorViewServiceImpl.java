@@ -2,11 +2,12 @@ package com.revature.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Appointment;
-import com.revature.model.User;
+import com.revature.model.PatientDoctor;
 import com.revature.repository.DoctorViewRepository;
 import com.revature.repository.impl.DoctorViewRepositoryImpl;
 import com.revature.service.DoctorViewService;
@@ -22,8 +23,8 @@ public class DoctorViewServiceImpl implements DoctorViewService{
 	}
 
 	@Override
-	public List<User> viewSelfPatients(int doctorId) {
-		List<User> viewSelfPatients = null;
+	public List<PatientDoctor> viewSelfPatients(int doctorId) {
+		List<PatientDoctor> viewSelfPatients = null;
 		viewSelfPatients = this.doctorViewRepository.viewSelfPatients(doctorId);
 		return viewSelfPatients;
 	}
