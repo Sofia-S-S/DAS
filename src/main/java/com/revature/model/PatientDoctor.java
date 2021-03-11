@@ -1,22 +1,32 @@
 package com.revature.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
 
 @Entity
 
-@Table(name = "patient_doctor", schema="das", uniqueConstraints = { @UniqueConstraint( columnNames = { "patient", "doctor" } ) })
+@Table(name = "patient_doctor", schema="das" ) 
 public class PatientDoctor {
+	
+	@Id
+	@Column
+	@GeneratedValue(generator = "retation_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(allocationSize = 1, name = "retation_id_seq", sequenceName = "retation_id_seq")
+	private int retationId;
 
 	@JoinColumn
 	@OneToOne
 	private User patient;
 	@JoinColumn
-	@OneToMany
+	@OneToOne
 	private User doctor;
 	
 	public PatientDoctor() {
