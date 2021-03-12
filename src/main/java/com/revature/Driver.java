@@ -1,10 +1,24 @@
-package com.revature;
+/**
+ * 
+ */
+package com.revature.util;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author Jinwei Xiong
+ *
+ */
+@SpringBootApplication
 public class Driver {
-	
+
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-	
-		
+		// TODO Auto-generated method stub
+		SpringApplication.run(Driver.class, args);
 	}
+
 }
