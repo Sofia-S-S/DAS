@@ -11,7 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import com.revature.model.Role;
-import com.revature.model.USERROLE;
+
 import com.revature.util.HibernateSessionFactory;
 
 /**
