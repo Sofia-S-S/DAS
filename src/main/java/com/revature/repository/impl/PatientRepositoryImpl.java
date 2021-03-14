@@ -19,7 +19,6 @@ import com.revature.util.HibernateSessionFactory;
 @Repository("patientRepository")
 public class PatientRepositoryImpl implements PatientRepository {
 	
-	// Making a change to see if it will officially change the remote repository back to what it was
 	
 	// Transaction variable
 	Transaction tx;
