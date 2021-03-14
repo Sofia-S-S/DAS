@@ -1,18 +1,27 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
 import com.revature.model.Login;
 import com.revature.model.User;
 import com.revature.service.AdminService;
+
+/**
+ * @author sofka
+ */
 
 @RestController(value = "adminController")
 @RequestMapping(path = "/admin")
@@ -39,7 +48,19 @@ public class AdminController {
 	public void createSpot(@RequestBody Appointment spot) {
 		this.adminService.createSpot(spot);
 	}
-
+	
+	@GetMapping(path = "/all-doctors", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<User> getAllDoctors() throws NothingFoundException {
+		List<User> doctors = null;
+		doctors = this.adminService.getAllDoctors();
+		return doctors;
+	}
+	@GetMapping(path = "/doctor", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public User getDoctorById(@RequestParam int id) throws NothingFoundException {
+		User doctor = null;
+		doctor = this.adminService.getDoctorById(id);
+		return doctor;
+	}
 	
 	
 	
