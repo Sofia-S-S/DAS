@@ -74,3 +74,8 @@ yarn-error.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#DB configurations with our passwords
+**/.HibernateSessionFactory.java
+#I keep Driver for testing perposes
+**/.Driver.java
