@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Address;
 import com.revature.model.Appointment;
+import com.revature.model.Bill;
 import com.revature.model.Login;
 import com.revature.model.Role;
 import com.revature.model.User;
@@ -30,6 +31,7 @@ public class PatientServiceImpl implements PatientService {
 		// Assign the patient's role
 		Role role = new Role(3, "patient");
 		
+		// Send info to the repository layer
 		patientRepository.registerNewPatient(user, address, login, role);
 
 	}
@@ -69,6 +71,51 @@ public class PatientServiceImpl implements PatientService {
 		List<Appointment> doctorsAvailability = patientRepository.viewAvailability();
 		
 		return doctorsAvailability;
+	}
+
+	@Override
+	public void bookAppointment(Appointment appointment) {
+		
+		// Send info to the repository layer
+		patientRepository.bookAppointment(appointment);
+		
+	}
+
+	@Override
+	public List<Appointment> getMyAppointments(User patient) {
+		
+		// Grab the info from the Repository layer
+		List<Appointment> myAppointments = patientRepository.getMyAppointments(patient);
+		
+		return myAppointments;
+	}
+
+	@Override
+	public void cancelAppointment(Appointment appointment) {
+		
+		// Set the status to canceled
+		appointment.setStatus("canceled");
+		
+		// Send data to the repository layer
+		patientRepository.cancelAppointment(appointment);
+		
+	}
+
+	@Override
+	public List<Bill> viewMyBills(User patient) {
+		
+		// Grab the info from the Repository layer
+		List<Bill> myBills = patientRepository.viewMyBills(patient);
+		
+		return myBills;
+	}
+
+	@Override
+	public void payBill(Bill bill) {
+		
+		// Send info to the repository layer
+		patientRepository.payBill(bill);
+		
 	}
 
 }

@@ -27,15 +27,15 @@ public interface PatientRepository {
 	void bookAppointment(Appointment appointment);
 	
 	// Patients can view their appointments
-	List<Appointment> getMyAppointments(int patient);
+	List<Appointment> getMyAppointments(User patient);
 	
 	// Patients can cancel appointments
-	void cancelAppointment(int appointmentId);
+	void cancelAppointment(Appointment appointment);
 	
 	// Patients can view their bills
-	List<Bill> viewMyBills(int patient);
+	List<Bill> viewMyBills(User patient);
 	
 	// Patients can pay their bills
-	void payBill(int invoiceId);
+	void payBill(Bill bill);
 	
 }
