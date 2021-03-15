@@ -45,7 +45,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void createDoctor(Address address, User doctor, Login login) {
 		
-		Role role = new Role(2, "doctor");
+		Role role = new Role(3, " ");
 		doctor.setRole(role);
 
 		this.adminRepository.createDoctor(address, doctor, login);
@@ -71,15 +71,20 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<User> getAllDoctors() throws NothingFoundException {
 		List<User> doctors = null;
-		doctors = adminRepository.getAllDoctors();
+	
+			doctors = adminRepository.getAllDoctors();
+	
+
 		return doctors;
 	}
 
 
 	@Override
-	public User getDoctorById(int id) throws NothingFoundException {
+	public User getDoctorById(int id)  throws NothingFoundException {
 		User doctor = null;
-		doctor = adminRepository.getDoctorById(id);
+
+			doctor = adminRepository.getDoctorById(id);
+	
 		return doctor;
 	}
 
