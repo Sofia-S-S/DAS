@@ -1,5 +1,13 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: 18587
+=======
+<<<<<<< HEAD
+Built-By: sofka
+=======
+Built-By: Padilla_Dn_V.01
+>>>>>>> 681e1d2 (Pulling and synchronizing)
+>>>>>>> 97614a1 (Pulling and synchronizing)
 Build-Jdk: 15
 Created-By: Maven Integration for Eclipse
 
