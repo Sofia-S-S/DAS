@@ -83,7 +83,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 	}
 
 	@Override
-	public void updateInfo(User user, Address address, Login login, Role role) {
+	public void updateInfo(User user, Address address, Login login) {
 
 		// Try block that will start and automatically close a session
 		try (Session session = HibernateSessionFactory.getSession()) {
@@ -94,7 +94,6 @@ public class PatientRepositoryImpl implements PatientRepository {
 			// Save the new patient info
 			session.update(address);
 			session.update(login);
-			session.update(role);
 			session.update(user);
 			
 			// Commit the transaction
@@ -110,8 +109,29 @@ public class PatientRepositoryImpl implements PatientRepository {
 
 	@Override
 	public List<Appointment> viewAvailability() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Initialize a list object
+		List<Appointment> doctorsAvailability = null;
+		
+		// Try block that will start and automatically close a session
+		try (Session session = HibernateSessionFactory.getSession()) {
+			
+			// Begin a transaction
+			tx = session.beginTransaction();
+			
+			// Query the DB and return the results as a list
+			doctorsAvailability = session.createQuery("FROM Appointment WHERE status = open", Appointment.class)
+					.getResultList();
+			
+			// Commit the transaction
+			tx.commit();
+			
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+		return doctorsAvailability;
 	}
 
 	@Override
