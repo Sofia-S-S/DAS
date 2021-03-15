@@ -76,6 +76,6 @@ yarn-error.log
 Thumbs.db
 
 #DB configurations with our passwords
-**/.HibernateSessionFactory.java
+src\main\java\com\revature\util\HibernateSessionFactory.java
 #I keep Driver for testing perposes
 **/.Driver.java
