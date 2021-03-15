@@ -1,9 +1,12 @@
 package com.revature.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Address;
+import com.revature.model.Appointment;
 import com.revature.model.Login;
 import com.revature.model.Role;
 import com.revature.model.User;
@@ -22,7 +25,10 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public void registerNewPatient(User user, Address address, Login login, Role role) {
+	public void registerNewPatient(User user, Address address, Login login) {
+		
+		// Assign the patient's role
+		Role role = new Role(3, "patient");
 		
 		patientRepository.registerNewPatient(user, address, login, role);
 
@@ -46,6 +52,23 @@ public class PatientServiceImpl implements PatientService {
 		}
 		
 		return b;
+	}
+
+	@Override
+	public void updateInfo(User user, Address address, Login login) {
+		
+		// Send info to the repository layer
+		patientRepository.updateInfo(user, address, login);
+		
+	}
+
+	@Override
+	public List<Appointment> viewAvailability() {
+		
+		// Grab the info from the Repository layer
+		List<Appointment> doctorsAvailability = patientRepository.viewAvailability();
+		
+		return doctorsAvailability;
 	}
 
 }

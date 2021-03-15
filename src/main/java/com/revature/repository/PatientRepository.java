@@ -18,7 +18,7 @@ public interface PatientRepository {
 	String getPassword(String email);
 	
 	// Patients can update their info
-	void updateInfo(User user, Address address, Login login, Role role);
+	void updateInfo(User user, Address address, Login login);
 	
 	// Patients can view doctors and their availability
 	List<Appointment> viewAvailability();
