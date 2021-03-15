@@ -136,31 +136,126 @@ public class PatientRepositoryImpl implements PatientRepository {
 
 	@Override
 	public void bookAppointment(Appointment appointment) {
-		// TODO Auto-generated method stub
+		
+		// Try block that will start and automatically close a session
+		try (Session session = HibernateSessionFactory.getSession()) {
+			
+			// Begin a transaction
+			tx = session.beginTransaction();
+			
+			// Query the DB
+			session.update(appointment);
+			
+			// Commit the transaction
+			tx.commit();
+			
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
 
 	}
 
 	@Override
-	public List<Appointment> getMyAppointments(int patient) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Appointment> getMyAppointments(User patient) {
+		
+		// Initialize a list object
+		List<Appointment> myAppointments = null;
+		
+		// Try block that will start and automatically close a session
+		try (Session session = HibernateSessionFactory.getSession()) {
+			
+			// Begin a transaction
+			tx = session.beginTransaction();
+			
+			// Query the DB and return the results as a list
+			myAppointments = session.createQuery("FROM Appointment WHERE patient = :patient", Appointment.class)
+					.setParameter("patient", patient)
+					.getResultList();
+			
+			// Commit the transaction
+			tx.commit();
+			
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+		return myAppointments;
+
 	}
 
 	@Override
-	public void cancelAppointment(int appointmentId) {
-		// TODO Auto-generated method stub
+	public void cancelAppointment(Appointment appointment) {
+		
+		// Try block that will start and automatically close a session
+		try (Session session = HibernateSessionFactory.getSession()) {
+			
+			// Begin a transaction
+			tx = session.beginTransaction();
+			
+			// Save the new patient info
+			session.update(appointment);
+			
+			// Commit the transaction
+			tx.commit();
+			
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+
 
 	}
 
 	@Override
-	public List<Bill> viewMyBills(int patient) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Bill> viewMyBills(User patient) {
+		
+		// Initialize a list object
+		List<Bill> myBills = null;
+		
+		// Try block that will start and automatically close a session
+		try (Session session = HibernateSessionFactory.getSession()) {
+			
+			// Begin a transaction
+			tx = session.beginTransaction();
+			
+			// Query the DB and return the results as a list
+			myBills = session.createQuery("FROM Bill WHERE user = :patient", Bill.class)
+					.setParameter("patient", patient)
+					.getResultList();
+			
+			// Commit the transaction
+			tx.commit();
+			
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+		return myBills;
 	}
 
 	@Override
-	public void payBill(int invoiceId) {
-		// TODO Auto-generated method stub
+	public void payBill(Bill bill) {
+		
+		// Try block that will start and automatically close a session
+		try (Session session = HibernateSessionFactory.getSession()) {
+			
+			// Begin a transaction
+			tx = session.beginTransaction();
+			
+			// Save the new patient info
+			session.update(bill);
+			
+			// Commit the transaction
+			tx.commit();
+			
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+
 
 	}
 
