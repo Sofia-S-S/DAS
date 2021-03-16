@@ -9,8 +9,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.auth.model.Role;
 import com.revature.auth.model.RoleEnum;
+import com.revature.model.Role;
 /**
  * @author Jinwei Xiong
  *

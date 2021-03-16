@@ -11,7 +11,6 @@ import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.Login;
 import com.revature.model.User;
 import com.revature.repository.AdminRepository;
 import com.revature.util.HibernateSessionFactory;
@@ -30,7 +29,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 	//--------------------------ADD NEW DOCTOR TO THE SYSTEM
 
 	@Override // Create Employee (with Address) // Create Login
-	public void createDoctor(Address address, User doctor, Login login) {
+	public void createDoctor(Address address, User doctor) {
 		
 
 			//All my work is done within the context of a Hibernate session
@@ -45,7 +44,6 @@ public class AdminRepositoryImpl implements AdminRepository {
 				s.save(address);
 			
 				s.save(doctor);
-				s.save(login);
 				tx.commit();
 
 			}catch(HibernateException e) {

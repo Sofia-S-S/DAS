@@ -2,38 +2,42 @@ package com.revature.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.revature.auth.model.RoleEnum;
 
 @Entity
 
 @Table(name = "role", schema="das")
 public class Role {
-	
-	@Column
-	private int roleId;
 	@Id
-	@Column
-	private String role;
+	private Integer roleId;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="role")
+	private RoleEnum role;
 	public Role() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Role(int roleId, String role) {
+	public Role(Integer roleId, RoleEnum role) {
 		super();
 		this.roleId = roleId;
 		this.role = role;
 	}
-	public int getRoleId() {
+	public Integer getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
-	public String getRole() {
+	public RoleEnum getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(RoleEnum role) {
 		this.role = role;
 	}
 	@Override
@@ -41,7 +45,7 @@ public class Role {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + roleId;
+		result = prime * result + ((roleId == null) ? 0 : roleId.hashCode());
 		return result;
 	}
 	@Override
@@ -53,12 +57,12 @@ public class Role {
 		if (getClass() != obj.getClass())
 			return false;
 		Role other = (Role) obj;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
+		if (role != other.role)
 			return false;
-		if (roleId != other.roleId)
+		if (roleId == null) {
+			if (other.roleId != null)
+				return false;
+		} else if (!roleId.equals(other.roleId))
 			return false;
 		return true;
 	}
@@ -67,5 +71,5 @@ public class Role {
 		return "Role [roleId=" + roleId + ", role=" + role + "]";
 	}
 
-	
+
 }

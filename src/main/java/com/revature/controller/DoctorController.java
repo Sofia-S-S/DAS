@@ -37,14 +37,14 @@ public class DoctorController {
 		this.doctorViewService = doctorViewService;
 	}
 	
-	@GetMapping(path = "/viewSelfPatients", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(path = "/viewSelfPatients", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PatientDoctor> viewSelfPatients(@RequestParam int doctorId) {
 		List<PatientDoctor> viewSelfPatients = null;
 		viewSelfPatients = this.doctorViewService.viewSelfPatients(doctorId);
 		return viewSelfPatients;
 	}
 	
-	@GetMapping(path = "/viewBookedAppointments", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(path = "/viewBookedAppointments", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Appointment> viewBookedAppointments(@RequestParam int doctorId) {
 		List<Appointment> viewBookedAppointments = null;
 		viewBookedAppointments = this.doctorViewService.viewBookedAppointments(doctorId);

@@ -16,7 +16,6 @@ import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.Login;
 import com.revature.model.User;
 import com.revature.service.AdminService;
 
@@ -35,28 +34,28 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 	
-	@PostMapping(path = "/new-doctor", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public void createDoctor(@RequestBody Address address, User doctor, Login login) {
-		this.adminService.createDoctor(address, doctor, login);
+	@PostMapping(path = "/new-doctor", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public void createDoctor(@RequestBody Address address, User doctor) {
+		this.adminService.createDoctor(address, doctor);
 	}
 	
-	@PostMapping(path = "/new-bill", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@PostMapping(path = "/new-bill", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public void createBill(@RequestBody Bill bill) {
 		this.adminService.createBill(bill);
 	}
 	
-	@PostMapping(path = "/new-spot", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@PostMapping(path = "/new-spot", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public void createSpot(@RequestBody Appointment spot) {
 		this.adminService.createSpot(spot);
 	}
 	
-	@GetMapping(path = "/all-doctors", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(path = "/all-doctors", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<User> getAllDoctors() throws NothingFoundException {
 		List<User> doctors = null;
 		doctors = this.adminService.getAllDoctors();
 		return doctors;
 	}
-	@GetMapping(path = "/doctor", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(path = "/doctor", produces = MediaType.APPLICATION_JSON_VALUE)
 	public User getDoctorById(@RequestParam int id) throws NothingFoundException {
 		User doctor = null;
 		doctor = this.adminService.getDoctorById(id);

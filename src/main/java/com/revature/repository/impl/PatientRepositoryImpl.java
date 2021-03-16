@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.Login;
-import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.repository.PatientRepository;
 import com.revature.util.HibernateSessionFactory;
@@ -24,7 +22,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 	Transaction tx;
 
 	@Override
-	public void registerNewPatient(User user, Address address, Login login, Role role) {
+	public void registerNewPatient(User user, Address address) {
 
 		// Try block that will start and automatically close a session
 		try (Session session = HibernateSessionFactory.getSession()) {
@@ -34,8 +32,6 @@ public class PatientRepositoryImpl implements PatientRepository {
 			
 			// Save the new patient info
 			session.save(address);
-			session.save(login);
-			session.save(role);
 			session.save(user);
 			
 			// Commit the transaction
@@ -60,16 +56,16 @@ public class PatientRepositoryImpl implements PatientRepository {
 			// Begin a transaction
 			tx = session.beginTransaction();
 			
-			// create an initial login object
-			Login login = new Login();
+			// create an initial User object
+			User user = new User();
 			
-			// Query the DB and append it to the login object
-			login = session.createQuery("FROM Login WHERE email = :email", Login.class)
+			// Query the DB and append it to the User object
+			user = session.createQuery("FROM User WHERE email = :email", User.class)
 					.setParameter("email", email)
 					.getSingleResult();
 			
 			// Get the password
-			password = login.getPassword();
+			password = user.getPassword();
 			
 			// Commit the transaction
 			tx.commit();
@@ -83,7 +79,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 	}
 
 	@Override
-	public void updateInfo(User user, Address address, Login login) {
+	public void updateInfo(User user, Address address) {
 
 		// Try block that will start and automatically close a session
 		try (Session session = HibernateSessionFactory.getSession()) {
@@ -93,7 +89,6 @@ public class PatientRepositoryImpl implements PatientRepository {
 			
 			// Save the new patient info
 			session.update(address);
-			session.update(login);
 			session.update(user);
 			
 			// Commit the transaction
