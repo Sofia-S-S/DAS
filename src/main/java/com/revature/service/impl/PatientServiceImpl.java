@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.Login;
 import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.repository.impl.PatientRepositoryImpl;
@@ -26,13 +25,13 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public void registerNewPatient(User user, Address address, Login login) {
+	public void registerNewPatient(User user, Address address) {
 		
 		// Assign the patient's role
-		Role role = new Role(3, "patient");
+//		Role role = new Role(3, "patient");
 		
 		// Send info to the repository layer
-		patientRepository.registerNewPatient(user, address, login, role);
+		patientRepository.registerNewPatient(user, address );
 
 	}
 
@@ -57,10 +56,10 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public void updateInfo(User user, Address address, Login login) {
+	public void updateInfo(User user, Address address) {
 		
 		// Send info to the repository layer
-		patientRepository.updateInfo(user, address, login);
+		patientRepository.updateInfo(user, address);
 		
 	}
 

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Address;
-import com.revature.model.Login;
-import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.service.impl.PatientServiceImpl;
 
@@ -26,9 +24,9 @@ public class PatientController {
 	}
 	
 	// Endpoint for registering a new patient
-	@PostMapping(path = "/new", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public void registerNewPatient(@RequestBody User user, Address address, Login login) {
-		this.patientService.registerNewPatient(user, address, login);
+	@PostMapping(path = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public void registerNewPatient(@RequestBody User user, Address address) {
+		this.patientService.registerNewPatient(user, address);
 	}
 	
 }

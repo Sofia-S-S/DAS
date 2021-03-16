@@ -9,8 +9,6 @@ import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.Login;
-import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.repository.AdminRepository;
 import com.revature.repository.impl.AdminRepositoryImpl;
@@ -43,12 +41,12 @@ public class AdminServiceImpl implements AdminService{
 
 	//Creating new doctor by passing Role #2 to createUser method
 	@Override
-	public void createDoctor(Address address, User doctor, Login login) {
+	public void createDoctor(Address address, User doctor) {
 		
-		Role role = new Role(3, " ");
-		doctor.setRole(role);
+//		Role role = new Role(3, " ");
+//		doctor.setRole(role);
 
-		this.adminRepository.createDoctor(address, doctor, login);
+		this.adminRepository.createDoctor(address, doctor);
 		
 	}
 

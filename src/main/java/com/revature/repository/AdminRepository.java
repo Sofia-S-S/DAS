@@ -6,7 +6,6 @@ import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.Login;
 import com.revature.model.User;
 
 /**
@@ -18,7 +17,7 @@ public interface AdminRepository {
 	//1.Log in
 	
 	//2.Register new doctor (add login and an address for him as well)
-	void createDoctor(Address address,User doctor, Login login);
+	void createDoctor(Address address,User doctor);
 	
 	//3.Update doctor information
 	//Get all doctors first
