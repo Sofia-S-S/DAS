@@ -15,8 +15,8 @@ public class HibernateSessionFactory {
 			
 			sessionFactory = new Configuration().configure()
 					.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/postgres")
-					.setProperty("hibernate.connection.password", System.getenv("postgresPassword"))
-					.setProperty("hibernate.connection.username", System.getenv("postgresUsername"))
+					.setProperty("hibernate.connection.password", "Heix#394")
+					.setProperty("hibernate.connection.username", "postgres")
 					.buildSessionFactory();
 		}
 		
