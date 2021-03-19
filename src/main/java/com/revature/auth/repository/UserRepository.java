@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.revature.auth.repository;
 
 import java.util.List;
@@ -14,10 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.revature.model.User;
 
 
-/**
- * @author Jinwei Xiong
- *
- */
 @Repository(value="userRepository")
 public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findAll();
@@ -25,7 +19,16 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	Boolean existsByUsername(String username);
 	Boolean existsByEmail(String email);
 	
+	// Adding a new patient or doctor
+	// Updating existing patient or doctor
 	<S extends User> S save(User user);
 	@Query(value = "select u from User u where u.email = :email")
 	List<User> findByEmail(@Param("email") String email);	
+	
+	// Grab the user
+	 User findByUserId(int userId);
+	 
+	 // Get all doctors
+	 @Query(value = "SELECT u FROM User u WHERE u.role = 'doctor'")
+	 List<User> findAllByRoles();
 }
