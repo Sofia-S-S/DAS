@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.auth.jwts.JSONWebTokens;
-import com.revature.auth.model.LoginRequest;
-import com.revature.auth.model.RegisterRequest;
-import com.revature.auth.model.RoleEnum;
-import com.revature.auth.model.JSONWebTokenResponse;
-import com.revature.auth.model.MessageResponse;
-import com.revature.auth.repository.UserRepository;
-import com.revature.auth.repository.RoleRepository;
 import com.revature.auth.service.UserDetailsInDAS;
+import com.revature.model.JSONWebTokenResponse;
+import com.revature.model.LoginRequest;
+import com.revature.model.MessageResponse;
+import com.revature.model.RegisterRequest;
 import com.revature.model.Role;
+import com.revature.model.RoleEnum;
 import com.revature.model.User;
+import com.revature.repository.RoleRepository;
+import com.revature.repository.UserRepository;
 
 /**
  * @author Jinwei Xiong

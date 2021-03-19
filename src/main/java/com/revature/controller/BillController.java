@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Bill;
-import com.revature.model.User;
 import com.revature.service.BillService;
 
 @RestController(value="billController")
 @RequestMapping(path="/bill")
-@CrossOrigin(origins = {"http://localhost:64803"})
+@CrossOrigin(origins = "*")
 public class BillController {
 
 	

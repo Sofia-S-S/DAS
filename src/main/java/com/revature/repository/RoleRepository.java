@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.revature.auth.repository;
+package com.revature.repository;
 
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +9,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.auth.model.RoleEnum;
 import com.revature.model.Role;
+import com.revature.model.RoleEnum;
 /**
  * @author Jinwei Xiong
  *

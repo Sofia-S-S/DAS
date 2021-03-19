@@ -26,7 +26,7 @@ import com.revature.service.AdminService;
 
 @RestController(value = "adminController")
 @RequestMapping(path = "/admin")
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*")
 public class AdminController {
 
 	private AdminService adminService;

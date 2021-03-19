@@ -32,7 +32,7 @@ public class User {
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
 
-	@Column(name="username")
+	@Column(name="username", nullable =false)
 	private String username;
 	@Column(name="password")
 	private String password;
