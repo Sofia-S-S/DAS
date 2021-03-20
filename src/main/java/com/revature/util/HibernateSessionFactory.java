@@ -14,8 +14,13 @@ public class HibernateSessionFactory {
 		if(sessionFactory == null) {
 			
 			sessionFactory = new Configuration().configure()
+<<<<<<< HEAD
 					.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5433/postgres")
 					.setProperty("hibernate.connection.password", "password")
+=======
+					.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/postgres")
+					.setProperty("hibernate.connection.password", "Heix#394")
+>>>>>>> 067fa31 (Rewrote ontroller Cors Filters)
 					.setProperty("hibernate.connection.username", "postgres")
 					.buildSessionFactory();
 		}
