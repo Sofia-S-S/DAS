@@ -26,7 +26,7 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@Column
+	@Column(name="user_id")
 	@GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
@@ -36,12 +36,18 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
+<<<<<<< HEAD
 	@Column(columnDefinition="bytea")
 	private byte[] profilepicture;
 	
 	@Column
-	private String firstName;
+=======
 	@Column
+	private Byte[] profilepicture;
+	@Column(name="first_name")
+>>>>>>> f5a5a501c691bde261d94be01005e89c383cc5f7
+	private String firstName;
+	@Column(name="last_name")
 	private String lastName;
 	@Column
 	private String gender;
