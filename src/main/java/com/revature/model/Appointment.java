@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(schema="das")
 public class Appointment {
 	@Id
-	@Column
+	@Column(name="appointment_id")
 	@GeneratedValue(generator = "appointment_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "appointment_id_seq", sequenceName = "appointment_id_seq")
 	private int appointmentId;
