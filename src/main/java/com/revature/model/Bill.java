@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(schema="das")
 public class Bill {
 	@Id
-	@Column
+	@Column(name="invoice_id")
 	@GeneratedValue(generator = "bill_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "bill_id_seq", sequenceName = "bill_id_seq")
 	private int invoiceId;
@@ -32,7 +32,7 @@ public class Bill {
 	@Column
 	private Date date;
 	
-	@Column
+	@Column(name="duedate")
 	private Date dueDate;
 
 	public Bill() {

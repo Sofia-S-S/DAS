@@ -1,5 +1,5 @@
 
-package com.revature.auth.repository;
+package com.revature.repository;
 
 import java.util.List;
 import java.util.Optional;
