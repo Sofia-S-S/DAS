@@ -16,7 +16,7 @@ import com.revature.service.UserService;
 
 @RestController(value="userController")
 @RequestMapping(path="/user")
-@CrossOrigin(origins ="*")
+@CrossOrigin(origins = {"http://localhost:64803"})
 public class UserController {
 
 	private UserService userService;
@@ -33,12 +33,6 @@ public class UserController {
 	
 	@PostMapping(path = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public void createNewUser(@RequestBody User user) {
-		
-		this.userService.createNewUser(user);
-	}
-	
-	@PostMapping(path = "/new-doctor", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public void createNewDoctor(@RequestBody User user) {
 		
 		this.userService.createNewUser(user);
 	}

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -20,9 +21,7 @@ import javax.persistence.Table;
 
 
 @Entity
-
 @Table(name = "user", schema="das")
-
 
 public class User {
 	
@@ -32,14 +31,21 @@ public class User {
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
 
-	@Column(name="username", nullable =false)
+	@Column(name="username")
 	private String username;
 	@Column(name="password")
 	private String password;
 	
+<<<<<<< HEAD
+	@Column(columnDefinition="bytea")
+	private byte[] profilepicture;
+	
+	@Column
+=======
 	@Column
 	private Byte[] profilepicture;
 	@Column(name="first_name")
+>>>>>>> f5a5a501c691bde261d94be01005e89c383cc5f7
 	private String firstName;
 	@Column(name="last_name")
 	private String lastName;
@@ -62,7 +68,6 @@ public class User {
 	@Column
 	private String role;
 	
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "das_user_role", 
 				joinColumns = @JoinColumn(name = "userId"), 
@@ -70,22 +75,16 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 	
 //	
-//	
-//	
 //	@JoinColumn
 //	@OneToOne
 //	private Role role;
-	
-	
 	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
-	public User(int userId, String username, String password, Byte[] profilepicture, String firstName, String lastName,
+	public User(int userId, String username, String password, byte[] profilepicture, String firstName, String lastName,
 			String gender, String email, long phone, Address address, Date dob, String role, Set<Role> roles) {
 		super();
 		this.userId = userId;
@@ -129,11 +128,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Byte[] getProfilepicture() {
+	public byte[] getProfilepicture() {
 		return profilepicture;
 	}
 
-	public void setProfilepicture(Byte[] profilepicture) {
+	public void setProfilepicture(byte[] profilepicture) {
 		this.profilepicture = profilepicture;
 	}
 

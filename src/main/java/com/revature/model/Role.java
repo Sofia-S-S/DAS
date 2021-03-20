@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.revature.auth.model.RoleEnum;
+
 @Entity
 
 @Table(name = "role", schema="das")
