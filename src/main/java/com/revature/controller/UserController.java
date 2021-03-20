@@ -36,4 +36,9 @@ public class UserController {
 		
 		this.userService.createNewUser(user);
 	}
+	@PostMapping(path = "/new-doctor", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public void createNewDoctor(@RequestBody User user) {
+		
+		this.userService.createNewDoctor(user);
+	}
 }
