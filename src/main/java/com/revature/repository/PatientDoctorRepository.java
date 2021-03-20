@@ -18,7 +18,10 @@ public interface PatientDoctorRepository extends JpaRepository<PatientDoctor, In
 	 * So if we do not want to pass in the entire user object for a doctor as a parameter,
 	 * and just want the userId then we need to reference the users entity in the query.
 	 */
-//	@Query("SELECT pd FROM PatientDoctor pd WHERE pd.user.doctor.userId = :doctorId")
-//	List<PatientDoctor> findAllByDoctorUserId(@Param("doctorId") int doctorId);
+	@Query("SELECT pd FROM PatientDoctor pd WHERE pd.doctor.userId = :doctorId")
+	List<PatientDoctor> findAllByDoctor(@Param("doctorId") int doctorId);
+	
+	// Creating a new mapping for a patient and doctor
+	<S extends PatientDoctor> S save(PatientDoctor patientDoctor);
 	
 }

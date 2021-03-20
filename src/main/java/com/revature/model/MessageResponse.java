@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.revature.auth.model;
+package com.revature.model;
 
 /**
  * @author Jinwei Xiong
