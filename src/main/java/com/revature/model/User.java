@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@Column
+	@Column(name="user_id")
 	@GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
@@ -39,9 +39,9 @@ public class User {
 	
 	@Column
 	private Byte[] profilepicture;
-	@Column
+	@Column(name="first_name")
 	private String firstName;
-	@Column
+	@Column(name="last_name")
 	private String lastName;
 	@Column
 	private String gender;
