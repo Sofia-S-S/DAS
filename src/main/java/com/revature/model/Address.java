@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Address {
 	
 	@Id
-	@Column
+	@Column(name="address_id")
 	@GeneratedValue(generator = "address_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "address_id_seq", sequenceName = "address_id_seq")
 	private int addressId;
