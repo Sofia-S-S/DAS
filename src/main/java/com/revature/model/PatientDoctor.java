@@ -18,14 +18,23 @@ import javax.persistence.Table;
 public class PatientDoctor {
 	
 	@Id
+<<<<<<< HEAD
+<<<<<<< HEAD
 	@Column (name="retation_id")
+=======
+	@Column(name = "retation_id")
+>>>>>>> 32e155a (Able to POST with a file)
+=======
+	@Column(name = "retation_id")
+>>>>>>> 4f7de85 (Resolved merge conflict, does compile)
 	@GeneratedValue(generator = "retation_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "retation_id_seq", sequenceName = "retation_id_seq")
 	private int retationId;
-
-	@JoinColumn
+	
 	@OneToOne
+	@JoinColumn
 	private User patient;
+	
 	@JoinColumn
 	@ManyToOne
 	private User doctor;

@@ -31,17 +31,6 @@ public class User {
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
 
-	@Column(name="username")
-	private String username;
-	@Column(name="password")
-	private String password;
-	
-	@Id
-	@Column(name="user_id")
-	@GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
-	private int userId;
-
 	@Column(name="username", nullable =false)
 	private String username;
 	@Column(name="password")
@@ -87,6 +76,14 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> 32e155a (Able to POST with a file)
+=======
+>>>>>>> 4f7de85 (Resolved merge conflict, does compile)
 	public User(int userId, String username, String password, byte[] profilepicture, String firstName, String lastName,
 			String gender, String email, long phone, Address address, Date dob, String role, Set<Role> roles) {
 		super();
