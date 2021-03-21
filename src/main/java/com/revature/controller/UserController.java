@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.User;
@@ -40,5 +41,11 @@ public class UserController {
 	public void createNewDoctor(@RequestBody User user) {
 		
 		this.userService.createNewDoctor(user);
+	}
+	
+	// Getting user info
+	@GetMapping(path = "/info", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public User viewUser(@RequestParam int userId) {
+		return userService.viewUser(userId);
 	}
 }
