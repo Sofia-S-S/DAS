@@ -23,10 +23,10 @@ public class PatientDoctorController {
 	private PatientDoctorService patientDoctorService;
 	
 	// Find all patients for a doctor
-	@GetMapping(path = "/viewSelfPatients", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<PatientDoctor> findAllByDoctor(@RequestParam int doctorId){
-		return this.patientDoctorService.findAllByDoctor(doctorId);
-	}
+//	@GetMapping(path = "/viewSelfPatients", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public List<PatientDoctor> findAllByDoctor(@RequestParam int doctorId){
+//		return this.patientDoctorService.findAllByDoctor(doctorId);
+//	}
 	
 	// Create a new mapping between patient and doctor
 	@PostMapping(path = "/new-relationship", consumes = MediaType.APPLICATION_JSON_VALUE)

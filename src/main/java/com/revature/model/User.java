@@ -76,14 +76,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	
 
->>>>>>> 32e155a (Able to POST with a file)
-=======
->>>>>>> 4f7de85 (Resolved merge conflict, does compile)
 	public User(int userId, String username, String password, byte[] profilepicture, String firstName, String lastName,
 			String gender, String email, long phone, Address address, Date dob, String role, Set<Role> roles) {
 		super();
