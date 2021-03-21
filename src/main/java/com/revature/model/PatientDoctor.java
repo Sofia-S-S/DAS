@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,17 +17,16 @@ import javax.persistence.Table;
 public class PatientDoctor {
 	
 	@Id
-	@Column(name = "retation_id")
+	@Column
 	@GeneratedValue(generator = "retation_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "retation_id_seq", sequenceName = "retation_id_seq")
 	private int retationId;
-	
+
 	@JoinColumn
 	@OneToOne
 	private User patient;
-	
 	@JoinColumn
-	@ManyToOne
+	@OneToOne
 	private User doctor;
 	
 	public PatientDoctor() {

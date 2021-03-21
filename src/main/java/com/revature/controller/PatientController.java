@@ -1,36 +1,24 @@
 package com.revature.controller;
 
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
-import com.revature.model.MessageResponse;
-import com.revature.model.Role;
 import com.revature.model.User;
-import com.revature.repository.UserRepository;
 import com.revature.service.impl.PatientServiceImpl;
-@CrossOrigin(origins="*", maxAge=3600)
+
 @RestController("patientController")
 @RequestMapping(path = "/patient")
 public class PatientController {
-	
 
 	// Autowire to the patientService bean
 	private PatientServiceImpl patientService;
@@ -41,14 +29,9 @@ public class PatientController {
 	}
 	
 	// Endpoint for registering a new patient
-	@PostMapping(path = "/new", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-	public ResponseEntity<MessageResponse> registerNewPatient(@RequestParam("image") MultipartFile image, 
-			@RequestParam("user") String user) throws IOException{
-		User newPatient = new ObjectMapper().readValue(user, User.class);
-		System.out.println(newPatient);
-		System.out.println("Image size and Name: " + image.getSize() + ", " + image.getName());
-		
-		return this.patientService.registerNewPatient(newPatient, image);
+	@PostMapping(path = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public void registerNewPatient(@RequestBody User user, Address address) {
+		this.patientService.registerNewPatient(user, address);
 	}
 	
 	// Endpoint for patients to view doctors and their availability

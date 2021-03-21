@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,16 +32,17 @@ public class User {
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
 
-	@Column(name="username", nullable =false)
+	@Column(name="username")
 	private String username;
 	@Column(name="password")
 	private String password;
 	
-	@Column
+	@Column(columnDefinition="bytea")
 	private byte[] profilepicture;
-	@Column(name="first_name")
+	
+	@Column
 	private String firstName;
-	@Column(name="last_name")
+	@Column
 	private String lastName;
 	@Column
 	private String gender;
@@ -48,6 +50,7 @@ public class User {
 	private String email;
 	@Column
 	private long phone;
+	
 	@JoinColumn
 	@OneToOne
 	private Address address;
@@ -61,9 +64,11 @@ public class User {
 	private String role;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "das_user_role", 
+
+	@JoinTable(name = "user_role", schema="das", 
 				joinColumns = @JoinColumn(name = "userId"), 
-				inverseJoinColumns = @JoinColumn(name = "roleId"))		
+				inverseJoinColumns = @JoinColumn(name = "roleId"))	
+
 	private Set<Role> roles = new HashSet<>();
 	
 //	
@@ -76,7 +81,6 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	public User(int userId, String username, String password, byte[] profilepicture, String firstName, String lastName,
 			String gender, String email, long phone, Address address, Date dob, String role, Set<Role> roles) {
 		super();

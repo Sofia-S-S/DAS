@@ -14,7 +14,6 @@ import com.revature.auth.model.RoleEnum;
 @Table(name = "role", schema="das")
 public class Role {
 	@Id
-	@Column(name ="role_id")
 	private Integer roleId;
 	
 	@Enumerated(EnumType.STRING)

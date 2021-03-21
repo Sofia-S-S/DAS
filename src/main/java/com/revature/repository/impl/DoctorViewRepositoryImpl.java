@@ -46,7 +46,7 @@ public class DoctorViewRepositoryImpl implements DoctorViewRepository{
 			session = HibernateSessionFactory.getSession();
 			transaction = session.beginTransaction();
 			viewBookedAppointments = session.createQuery("FROM Appointment WHERE doctor.userId = :doctorId AND "
-					+ "status = :status", Appointment.class).setParameter("doctorId", doctorId).setParameter("status", "booked")
+					+ "status = :status", Appointment.class).setParameter("doctorId", doctorId).setParameter("status", "available")
 					.getResultList();
 			transaction.commit();
 		}catch(HibernateException e) {
