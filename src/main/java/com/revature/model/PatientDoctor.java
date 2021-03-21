@@ -23,8 +23,8 @@ public class PatientDoctor {
 	@SequenceGenerator(allocationSize = 1, name = "retation_id_seq", sequenceName = "retation_id_seq")
 	private int retationId;
 	
-	@OneToOne
 	@JoinColumn
+	@OneToOne
 	private User patient;
 	
 	@JoinColumn
