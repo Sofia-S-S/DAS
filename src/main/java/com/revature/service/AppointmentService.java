@@ -22,6 +22,7 @@ public class AppointmentService {
 	public void createAppointment(Appointment appointment) {
 		// Set the status to available
 		appointment.setStatus("available");
+		appointment.setPatient(null);
 		this.appointmentRepository.save(appointment);
 	}
 	
@@ -39,6 +40,10 @@ public class AppointmentService {
 		appointment.setPatient(null);
 
 		this.appointmentRepository.save(appointment);
+	}
+	// PAdmin can view all appointments
+	public List<Appointment> getAll(){
+		return this.appointmentRepository.findAll();
 	}
 	
 	// Patients can view available appointments
