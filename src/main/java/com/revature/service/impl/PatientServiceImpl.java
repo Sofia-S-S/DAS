@@ -15,7 +15,7 @@ import com.revature.model.Appointment;
 import com.revature.model.Bill;
 import com.revature.model.MessageResponse;
 import com.revature.model.Role;
-import com.revature.model.RoleEnum;
+import com.revature.auth.model.RoleEnum;
 import com.revature.model.User;
 import com.revature.repository.RoleRepository;
 import com.revature.repository.UserRepository;

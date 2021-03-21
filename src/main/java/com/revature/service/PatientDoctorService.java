@@ -16,9 +16,9 @@ public class PatientDoctorService {
 	private PatientDoctorRepository patientDoctorRepository;
 	
 	// Find all patients for a doctor
-	public List<PatientDoctor> findAllByDoctor(int doctorId){
-		return this.patientDoctorRepository.findAllByDoctorUserId(doctorId);
-	}
+//	public List<PatientDoctor> findAllByDoctor(int doctorId){
+//		return this.patientDoctorRepository.findAllByDoctorUserId(doctorId);
+//	}
 	
 	// Create a new mapping between patient and doctor
 	public void newRelationship(PatientDoctor patientDoctor) {
