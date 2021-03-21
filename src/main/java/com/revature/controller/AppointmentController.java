@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Appointment;
 import com.revature.service.AppointmentService;
-@CrossOrigin(origins="*", maxAge=3600)
+
 @RestController(value = "appointmentController")
 @RequestMapping(path = "/appointment")
+@CrossOrigin(origins ="*")
 public class AppointmentController {
 
 	@Autowired
@@ -26,6 +27,11 @@ public class AppointmentController {
 	@PostMapping(path = "/new-spot", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void createAppointment(@RequestBody Appointment appointment) {
 		this.appointmentService.createAppointment(appointment);
+	}
+	// admin can see all
+	@GetMapping(path = "/all")
+	public List<Appointment> findAll() {
+		return this.appointmentService.getAll();
 	}
 	
 	// Patients book an appointment
@@ -59,3 +65,4 @@ public class AppointmentController {
 	}
 
 }
+

@@ -17,7 +17,7 @@ import com.revature.service.BillService;
 
 @RestController(value="billController")
 @RequestMapping(path="/bill")
-@CrossOrigin(origins = {"http://localhost:64803"})
+@CrossOrigin(origins = "*")
 public class BillController {
 
 	
