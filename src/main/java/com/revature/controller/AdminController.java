@@ -35,7 +35,11 @@ import com.revature.service.AdminService;
 
 @RestController(value = "adminController")
 @RequestMapping(path = "/admin")
+<<<<<<< HEAD
 @CrossOrigin(origins = "*")
+=======
+@CrossOrigin(origins = {"*"})
+>>>>>>> 558882e62b61ad006ae1a9ab99217a3472cf9df9
 public class AdminController {
 	@Autowired
 	UserRepository userRepository;
