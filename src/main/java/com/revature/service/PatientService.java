@@ -1,16 +1,21 @@
 package com.revature.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
+import com.revature.model.MessageResponse;
 import com.revature.model.User;
 
 public interface PatientService {
 
 	// A new patient can register for a new account
-	void registerNewPatient(User user, Address address);
+	ResponseEntity<MessageResponse> registerNewPatient(User user, MultipartFile image) throws IOException;
 	
 	// Patients can login
 	boolean userLogin(String email, String password);
