@@ -37,4 +37,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 			+ "AND a.status = 'booked'")
 	List<Appointment> findAllByDoctorAndStatus(@Param("doctorId") int doctorId);
 	
+	// Get appointment by appointmentId
+	@Query(value = "SELECT a FROM Appointment a WHERE a.appointmentId = :appointmentId")
+	Appointment findByAppointmentId(@Param("appointmentId") int appointmentId);
+	
 }
