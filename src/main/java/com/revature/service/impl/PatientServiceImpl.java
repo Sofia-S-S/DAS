@@ -1,6 +1,8 @@
 package com.revature.service.impl;
 
 import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,13 +12,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.revature.auth.model.RoleEnum;
+import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
 import com.revature.model.MessageResponse;
 import com.revature.model.Role;
+<<<<<<< HEAD
 import com.revature.model.RoleEnum;
+=======
+>>>>>>> ab94d64 (Can update patient information)
 import com.revature.model.User;
+import com.revature.repository.AppointmentRepository;
+import com.revature.repository.BillRepository;
 import com.revature.repository.RoleRepository;
 import com.revature.repository.UserRepository;
 import com.revature.repository.impl.PatientRepositoryImpl;
@@ -30,6 +39,12 @@ public class PatientServiceImpl implements PatientService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private AppointmentRepository appointmentRepository;
+	
+	@Autowired
+	private BillRepository billRepository;
 	
 	// Autowire to the patientRepository bean
 	private PatientRepositoryImpl patientRepository;
@@ -139,10 +154,11 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public List<Appointment> getMyAppointments(User patient) {
-		
+	public List<Appointment> getMyAppointments(String username) throws NothingFoundException{
+		List<Appointment> myAppointments = new ArrayList<>();
 		// Grab the info from the Repository layer
-		List<Appointment> myAppointments = patientRepository.getMyAppointments(patient);
+		myAppointments = appointmentRepository.findAllByPatient(username, "booked");
+		if(myAppointments.isEmpty()) throw new NothingFoundException();
 		
 		return myAppointments;
 	}
@@ -159,10 +175,11 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public List<Bill> viewMyBills(User patient) {
-		
+	public List<Bill> viewMyBills(String username) throws NothingFoundException{
+		List<Bill> myBills = new ArrayList<>();
 		// Grab the info from the Repository layer
-		List<Bill> myBills = patientRepository.viewMyBills(patient);
+		myBills = billRepository.findAllByPatient(username);
+		if(myBills.isEmpty()) throw new NothingFoundException();
 		
 		return myBills;
 	}
@@ -173,6 +190,22 @@ public class PatientServiceImpl implements PatientService {
 		// Send info to the repository layer
 		patientRepository.payBill(bill);
 		
+	}
+
+	@Override
+	public User viewMyInfo(String username) throws NothingFoundException {
+		User patient = new User();
+		patient = userRepository.findPatientByUsername(username);
+		if(patient.getUserId() < 1) throw new NothingFoundException();
+		return patient;
+	}
+
+	@Override
+	public ResponseEntity<MessageResponse> updatePatient(User user, MultipartFile image) throws IOException {
+		
+		user.setProfilepicture(image.getBytes());
+		userRepository.save(user);
+		return ResponseEntity.ok(new MessageResponse("User Registered Successfully!"));
 	}
 
 }

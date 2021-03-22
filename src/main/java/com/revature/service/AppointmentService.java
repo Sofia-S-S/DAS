@@ -18,6 +18,11 @@ public class AppointmentService {
 		this.appointmentRepository = appointmentRepository;
 	}
 	
+	// PAdmin can view all appointments
+	public List<Appointment> getAll(){
+		return this.appointmentRepository.findAll();
+		}
+
 	// Admin creates a new appointment spot
 	public void createAppointment(Appointment appointment) {
 		// Set the status to available

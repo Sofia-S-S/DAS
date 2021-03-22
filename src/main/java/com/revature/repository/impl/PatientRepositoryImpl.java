@@ -1,5 +1,6 @@
 package com.revature.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -7,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
@@ -152,10 +154,10 @@ public class PatientRepositoryImpl implements PatientRepository {
 	}
 
 	@Override
-	public List<Appointment> getMyAppointments(User patient) {
+	public List<Appointment> getMyAppointments(User patient) throws NothingFoundException{
 		
 		// Initialize a list object
-		List<Appointment> myAppointments = null;
+		List<Appointment> myAppointments = new ArrayList<>();
 		
 		// Try block that will start and automatically close a session
 		try (Session session = HibernateSessionFactory.getSession()) {
@@ -204,10 +206,10 @@ public class PatientRepositoryImpl implements PatientRepository {
 	}
 
 	@Override
-	public List<Bill> viewMyBills(User patient) {
+	public List<Bill> viewMyBills(User patient) throws NothingFoundException{
 		
 		// Initialize a list object
-		List<Bill> myBills = null;
+		List<Bill> myBills = new ArrayList<>();
 		
 		// Try block that will start and automatically close a session
 		try (Session session = HibernateSessionFactory.getSession()) {

@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
@@ -40,7 +43,7 @@ public class PatientController {
 		this.patientService = patientService;
 	}
 	
-	// Endpoint for registering a new patient
+	// Endpoint for registering a new patient 
 	@PostMapping(path = "/new", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	public ResponseEntity<MessageResponse> registerNewPatient(@RequestParam("image") MultipartFile image, 
 			@RequestParam("user") String user) throws IOException{
@@ -51,9 +54,20 @@ public class PatientController {
 		return this.patientService.registerNewPatient(newPatient, image);
 	}
 	
+	// Endpoint for registering a new patient 
+		@PostMapping(path = "/update", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+		public ResponseEntity<MessageResponse> updatePatient(@RequestParam("image") MultipartFile image, 
+				@RequestParam("user") String user) throws IOException{
+			User newPatient = new ObjectMapper().readValue(user, User.class);
+			System.out.println(newPatient);
+			System.out.println("Image size and Name: " + image.getSize() + ", " + image.getName());
+			
+			return this.patientService.updatePatient(newPatient, image);
+		}
+	
 	// Endpoint for patients to view doctors and their availability
 	@GetMapping(path = "/availability", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Appointment> viewAvailability(){
+	public List<Appointment> viewAvailability() {
 		return this.patientService.viewAvailability();
 	}
 		
@@ -65,8 +79,10 @@ public class PatientController {
 		
 	// Endpoint for patients to view their appointments
 	@GetMapping(path = "/appointments", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Appointment> getMyAppointments(@RequestBody User patient){
-		return this.getMyAppointments(patient);
+	public List<Appointment> getMyAppointments(@RequestParam String username) throws NothingFoundException{
+		List<Appointment> myAppointments = new ArrayList<>();
+		myAppointments = this.patientService.getMyAppointments(username);
+		return myAppointments;
 	}
 		
 	// Endpoint for patients that want to cancel appointments
@@ -77,14 +93,29 @@ public class PatientController {
 
 	// Endpoint for patients that want to view their bills
 	@GetMapping(path = "/bills", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Bill> viewMyBills(@RequestBody User patient){
-		return this.patientService.viewMyBills(patient);
+	public List<Bill> viewMyBills(@RequestParam String username) throws NothingFoundException{
+		List<Bill> myBills = new ArrayList<>();
+		myBills = this.patientService.viewMyBills(username);
+		return myBills;
 	}
 		
 	// Endpoint for patients to pay their bills
 	@PostMapping(path = "/pay", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void payBill(@RequestBody Bill bill) {
 		this.patientService.payBill(bill);
+	}
+	
+	// Endpoint for retrieving patient info
+		@GetMapping(path = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
+		public User viewMyInfo(@RequestParam String username) throws NothingFoundException{
+			User patient = new User();
+			patient = this.patientService.viewMyInfo(username);
+			return patient;
+		}
+	
+	@ExceptionHandler(NothingFoundException.class)
+	public String handleException() {
+		return "Sorry, There is nothing to display!";
 	}
 	
 }

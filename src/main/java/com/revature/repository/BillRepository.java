@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Bill;
+import com.revature.model.PatientDoctor;
 
 @Repository(value = "billRepository")
 public interface BillRepository extends JpaRepository<Bill, Integer> {
@@ -20,5 +21,8 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
 	List<Bill> findAllByUser(@Param("userId") int userId);
 	
 	List<Bill> findAll();
+	
+	@Query(value = "SELECT a FROM Bill a WHERE a.user.username = :username")
+	List<Bill> findAllByPatient(@Param("username") String username);
 	
 }

@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Appointment;
 import com.revature.service.AppointmentService;
+<<<<<<< HEAD
 
+=======
+@CrossOrigin(origins="*")
+>>>>>>> ab94d64 (Can update patient information)
 @RestController(value = "appointmentController")
 @RequestMapping(path = "/appointment")
 @CrossOrigin(origins ="*")
@@ -22,6 +26,13 @@ public class AppointmentController {
 
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	// admin can see all
+		@GetMapping(path = "/all")
+		public List<Appointment> findAll() {
+			return this.appointmentService.getAll();
+		}
+
 	
 	// Creating a new appointment spot
 	@PostMapping(path = "/new-spot", consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -1,5 +1,6 @@
 package com.revature.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -8,17 +9,18 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import com.revature.exception.NothingFoundException;
 import com.revature.model.Appointment;
 import com.revature.model.PatientDoctor;
 import com.revature.repository.DoctorViewRepository;
 import com.revature.util.HibernateSessionFactory;
 
-@Repository
+/*@Repository
 public class DoctorViewRepositoryImpl implements DoctorViewRepository{
 
 	@Override
-	public List<PatientDoctor> viewSelfPatients(int doctorId) {
-		List<PatientDoctor> viewSelfPatients = null;
+	public List<PatientDoctor> viewSelfPatients(int doctorId) throws NothingFoundException{
+		List<PatientDoctor> viewSelfPatients = new ArrayList<>();
 		Session session = null;
 		Transaction transaction = null;
 		try {
@@ -38,8 +40,8 @@ public class DoctorViewRepositoryImpl implements DoctorViewRepository{
 	}
 
 	@Override
-	public List<Appointment> viewBookedAppointments(int doctorId) {
-		List<Appointment> viewBookedAppointments = null;
+	public List<Appointment> viewBookedAppointments(int doctorId) throws NothingFoundException{
+		List<Appointment> viewBookedAppointments = new ArrayList<>();
 		Session session = null;
 		Transaction transaction = null;
 		try {
@@ -58,4 +60,4 @@ public class DoctorViewRepositoryImpl implements DoctorViewRepository{
 		return viewBookedAppointments;
 	}
 
-}
+}*/
