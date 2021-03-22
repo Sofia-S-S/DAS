@@ -1,9 +1,12 @@
 package com.revature.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +20,13 @@ import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
+import com.revature.model.MessageResponse;
+import com.revature.model.Role;
+import com.revature.model.RoleEnum;
 import com.revature.model.User;
+import com.revature.repository.AddressRepository;
+import com.revature.repository.RoleRepository;
+import com.revature.repository.UserRepository;
 import com.revature.service.AdminService;
 
 /**
@@ -26,19 +35,91 @@ import com.revature.service.AdminService;
 
 @RestController(value = "adminController")
 @RequestMapping(path = "/admin")
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = "*")
 public class AdminController {
 
-	private AdminService adminService;
-	
 	@Autowired
-	public void setAdminService(AdminService adminService) {
-		this.adminService = adminService;
-	}
+	UserRepository userRepository;
+	@Autowired
+	RoleRepository roleRepository;
+	@Autowired
+	AddressRepository addrRepository;
+	@Autowired
+	AdminService adminService;
+	
+	@PostMapping(path = "/update-doctor", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public User updateDoctor(@RequestBody User user){
+		System.out.println(user);
+		return this.userRepository.save(user);
+		}
+
 	
 	@PostMapping(path = "/new-doctor", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public void createDoctor(@RequestBody Address address, User doctor) {
-		this.adminService.createDoctor(address, doctor);
+	public ResponseEntity<MessageResponse> createDoctor(@RequestBody User doctor) {
+		System.out.println(doctor.getEmail());
+		Address addr = doctor.getAddress();
+		addr = addrRepository.save(addr);
+
+		String username = doctor.getUsername();
+		String email = doctor.getEmail();
+		String password = doctor.getPassword();
+
+		//System.out.println(username+", "+email+", "+password);
+		if (userRepository.existsByUsername(username)) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Username is already taken!"));
+		}
+
+		if (userRepository.existsByEmail(email)) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Email is already in use!"));
+		}
+
+		// Create new user's account
+		User newUser = new User();
+		newUser.setUsername(username);
+		newUser.setEmail(email);
+		newUser.setPassword(password);
+		newUser.setAddress(addr);
+		newUser.setFirstName(doctor.getFirstName());
+		newUser.setLastName(doctor.getLastName());
+		newUser.setDob(doctor.getDob());
+		newUser.setPhone(doctor.getPhone());
+		newUser.setGender(doctor.getGender());
+
+		String strRole = doctor.getRole();
+
+		Set<Role> roles = new HashSet<>();		
+		if (strRole == null || strRole.isEmpty() ) {
+			Role userRole = roleRepository.findByRole(RoleEnum.ROLE_PATIENT)
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+			roles.add(userRole);
+		} else {
+			switch (strRole) {
+				case "admin":
+					Role patient = roleRepository.findByRole(RoleEnum.ROLE_ADMIN).orElseThrow(()->new RuntimeException("Error: Role is not found."));
+					roles.add(patient);
+
+					break;
+				case "doctor":
+					Role doctorrole = roleRepository.findByRole(RoleEnum.ROLE_DOCTOR)
+							.orElseThrow(()->new RuntimeException("Error: Role is not found."));
+					roles.add(doctorrole);
+
+					break;
+				default:
+					Role adminRole = roleRepository.findByRole(RoleEnum.ROLE_PATIENT)
+							.orElseThrow(()->new RuntimeException("Error: Role is not found."));
+					roles.add(adminRole);
+			}
+		}
+		newUser.setRoles(roles);
+		newUser.setRole(strRole);	
+
+		userRepository.save(newUser);
+		return ResponseEntity.ok(new MessageResponse("Doctor registered successfully!"));
 	}
 	
 	@PostMapping(path = "/new-bill", consumes = {MediaType.APPLICATION_JSON_VALUE})

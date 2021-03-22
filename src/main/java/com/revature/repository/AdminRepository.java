@@ -2,6 +2,8 @@ package com.revature.repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
@@ -11,7 +13,7 @@ import com.revature.model.User;
 /**
  * @author sofka
  */
-
+@Repository
 public interface AdminRepository {
 	
 	//1.Log in
