@@ -25,8 +25,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	// Admin can view all  appointments
 			List<Appointment> findAll();
 	
-	// Admin can view all  appointments
-	List<Appointment> findAll();
+	
 	
 	// Patients can view all available appointments
 	@Query(value = "SELECT a FROM Appointment a WHERE a.status = 'available'")
