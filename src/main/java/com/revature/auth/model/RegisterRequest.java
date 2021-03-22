@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.revature.model;
+package com.revature.auth.model;
 
 import java.util.Set;
 

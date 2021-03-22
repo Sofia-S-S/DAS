@@ -48,7 +48,7 @@ import com.revature.model.User;
  */
 
 
-@CrossOrigin(origins="*", maxAge=3600)
+@CrossOrigin(origins="*")
 //@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api/auth")

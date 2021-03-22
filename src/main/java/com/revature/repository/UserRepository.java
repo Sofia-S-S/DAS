@@ -31,4 +31,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	 // Get all doctors
 	 @Query(value = "SELECT u FROM User u WHERE u.role = 'doctor'")
 	 List<User> findAllByRoles();
+	 
+	// Get specific patient by username
+		 @Query(value = "SELECT u FROM User u WHERE u.username = :username")
+		 User findPatientByUsername(@Param("username") String username);
 }

@@ -2,6 +2,7 @@ package com.revature.repository;
 
 import java.util.List;
 
+import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
 import com.revature.model.Bill;
@@ -25,13 +26,13 @@ public interface PatientRepository {
 	void bookAppointment(Appointment appointment);
 	
 	// Patients can view their appointments
-	List<Appointment> getMyAppointments(User patient);
+	List<Appointment> getMyAppointments(User patient) throws NothingFoundException;
 	
 	// Patients can cancel appointments
 	void cancelAppointment(Appointment appointment);
 	
 	// Patients can view their bills
-	List<Bill> viewMyBills(User patient);
+	List<Bill> viewMyBills(User patient) throws NothingFoundException;
 	
 	// Patients can pay their bills
 	void payBill(Bill bill);

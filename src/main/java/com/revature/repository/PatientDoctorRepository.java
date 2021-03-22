@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.PatientDoctor;
+import com.revature.model.User;
 
 @Repository(value = "patientDoctorRepository")
 public interface PatientDoctorRepository extends JpaRepository<PatientDoctor, Integer>{
@@ -20,5 +21,9 @@ public interface PatientDoctorRepository extends JpaRepository<PatientDoctor, In
 	 */
 //	@Query("SELECT pd FROM PatientDoctor pd WHERE pd.user.doctor.userId = :doctorId")
 //	List<PatientDoctor> findAllByDoctorUserId(@Param("doctorId") int doctorId);
+	<S extends PatientDoctor> S save(PatientDoctor patientDoctor);
+	@Query(value = "SELECT a FROM PatientDoctor a WHERE a.doctor.username = :username")
+	List<PatientDoctor> findAllByDoctor(@Param("username") String username);
+	List<PatientDoctor> findAll();
 	
 }

@@ -1,6 +1,7 @@
 package com.revature.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,10 @@ public class Appointment {
 	
 	@Column
 	private java.sql.Timestamp time;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab94d64 (Can update patient information)
 	@JoinColumn
 	@ManyToOne
 	private User patient;
@@ -35,12 +40,56 @@ public class Appointment {
 	
 	public Appointment() {}
 
+<<<<<<< HEAD
 	public Appointment(int appointmentId, java.sql.Timestamp time, User patient, User doctor, String status) {
+=======
+	public Appointment(int appointmentId, Timestamp time, User patient, User doctor, String status) {
+>>>>>>> ab94d64 (Can update patient information)
 		super();
 		this.appointmentId = appointmentId;
 		this.time = time;
 		this.patient = patient;
 		this.doctor = doctor;
+		this.status = status;
+	}
+
+	public int getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+
+	public java.sql.Timestamp getTime() {
+		return time;
+	}
+
+	public void setTime(java.sql.Timestamp time) {
+		this.time = time;
+	}
+
+	public User getPatient() {
+		return patient;
+	}
+
+	public void setPatient(User patient) {
+		this.patient = patient;
+	}
+
+	public User getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(User doctor) {
+		this.doctor = doctor;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -90,6 +139,7 @@ public class Appointment {
 		return true;
 	}
 
+<<<<<<< HEAD
 	public int getAppointmentId() {
 		return appointmentId;
 	}
@@ -130,11 +180,15 @@ public class Appointment {
 		this.status = status;
 	}
 
+=======
+>>>>>>> ab94d64 (Can update patient information)
 	@Override
 	public String toString() {
 		return "Appointment [appointmentId=" + appointmentId + ", time=" + time + ", patient=" + patient + ", doctor="
 				+ doctor + ", status=" + status + "]";
 	}
+
+	
 	
 	
 

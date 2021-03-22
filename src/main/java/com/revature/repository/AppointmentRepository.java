@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Appointment;
+import com.revature.model.PatientDoctor;
+import com.revature.model.User;
 
 
 @Repository(value = "appointmentRepository")
@@ -20,9 +22,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	 * 3. Patients cancel appointments
 	 */
 	<S extends Appointment> S save(Appointment appointment);
-	
 	// Admin can view all  appointments
-	List<Appointment> findAll();
+			List<Appointment> findAll();
+	
+	
 	
 	// Patients can view all available appointments
 	@Query(value = "SELECT a FROM Appointment a WHERE a.status = 'available'")
@@ -37,4 +40,11 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 			+ "AND a.status = 'booked'")
 	List<Appointment> findAllByDoctorAndStatus(@Param("doctorId") int doctorId);
 	
+	@Query(value = "SELECT a FROM Appointment a WHERE a.doctor.username = :username "
+			+ "AND a.status = :status")
+	List<Appointment> findAllByDoctorAndStatus(@Param("username") String username, 
+			@Param("status") String status);
+	@Query(value = "SELECT a FROM Appointment a WHERE a.patient.username = :username AND a.status = :status")
+	List<Appointment> findAllByPatient(@Param("username") String username,
+			@Param("status") String status);
 }
