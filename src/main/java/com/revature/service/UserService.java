@@ -127,4 +127,9 @@ public void createNewPatient(User user){
 		return userRepository.findByUserId(userId);
 	}
 	
+	public User getUser(String username) {
+		return userRepository.findByUsername(username).orElseThrow(()->new RuntimeException("Error: Role is not found."));
+
+	}
+	
 }

@@ -50,4 +50,11 @@ public class UserController {
 		
 		this.userService.createNewDoctor(user);
 	}
+	
+	// Getting user info
+	@GetMapping(path = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User viewUser(@RequestParam String username) {
+		return userService.getUser(username);
+
+	}
 }
