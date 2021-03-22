@@ -33,18 +33,29 @@ public class AppointmentService {
 	
 	// Patients book an appointment
 	public void bookAppointment(Appointment appointment) {
+		
+		System.out.println(appointment);
+		
+		// Get the appointment that will be updated
+		Appointment updatedAppointment = this.appointmentRepository.findByAppointmentId(appointment.getAppointmentId());
+		System.out.println(updatedAppointment);
 		// Set the status to booked
-		appointment.setStatus("booked");
-		this.appointmentRepository.save(appointment);
+		updatedAppointment.setStatus("booked");
+		
+		this.appointmentRepository.save(updatedAppointment);
 	}
 	
 	// Patients can cancel appointments
 	public void cancelAppointment(Appointment appointment) {
+		
+		// Get the appointment that will be canceled
+		Appointment canceledAppointment = this.appointmentRepository.findByAppointmentId(appointment.getAppointmentId());
+		
 		// Set the status to canceled
-		appointment.setStatus("available");
-		appointment.setPatient(null);
+		canceledAppointment.setStatus("available");
+		canceledAppointment.setPatient(null);
 
-		this.appointmentRepository.save(appointment);
+		this.appointmentRepository.save(canceledAppointment);
 	}
 	// PAdmin can view all appointments
 	public List<Appointment> getAll(){
