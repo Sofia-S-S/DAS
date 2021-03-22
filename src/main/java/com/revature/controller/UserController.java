@@ -44,7 +44,7 @@ public class UserController {
 	}
 	
 	// Getting user info
-	@GetMapping(path = "/info", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
 	public User viewUser(@RequestParam int userId) {
 		return userService.viewUser(userId);
 	}
