@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -21,12 +20,14 @@ import javax.persistence.Table;
 
 
 @Entity
+
 @Table(name = "user", schema="das")
+
 
 public class User {
 	
 	@Id
-	@Column
+	@Column(name="user_id")
 	@GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int userId;
@@ -48,6 +49,7 @@ public class User {
 	private String email;
 	@Column
 	private long phone;
+	
 	@JoinColumn
 	@OneToOne
 	private Address address;
@@ -60,21 +62,27 @@ public class User {
 	@Column
 	private String role;
 	
+	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "das_user_role", 
+	@JoinTable(name = "das_user_role", schema="das",
 				joinColumns = @JoinColumn(name = "userId"), 
 				inverseJoinColumns = @JoinColumn(name = "roleId"))		
 	private Set<Role> roles = new HashSet<>();
 	
 //	
+//	
+//	
 //	@JoinColumn
 //	@OneToOne
 //	private Role role;
+	
+	
 	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 
 	public User(int userId, String username, String password, byte[] profilepicture, String firstName, String lastName,

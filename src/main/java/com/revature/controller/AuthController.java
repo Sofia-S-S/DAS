@@ -31,15 +31,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.auth.jwts.JSONWebTokens;
-import com.revature.auth.model.LoginRequest;
-import com.revature.auth.model.RegisterRequest;
-import com.revature.auth.model.RoleEnum;
-import com.revature.auth.model.JSONWebTokenResponse;
-import com.revature.auth.model.MessageResponse;
+import com.revature.model.LoginRequest;
+import com.revature.model.RegisterRequest;
+import com.revature.model.JSONWebTokenResponse;
+import com.revature.model.MessageResponse;
 import com.revature.repository.UserRepository;
 import com.revature.repository.RoleRepository;
 import com.revature.auth.service.UserDetailsInDAS;
 import com.revature.model.Role;
+import com.revature.model.RoleEnum;
 import com.revature.model.User;
 
 /**
