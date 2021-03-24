@@ -7,10 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Appointment;
 import com.revature.repository.AppointmentRepository;
+import com.revature.repository.UserDAOImpl;
 
 @Service(value = "appointmentService")
 public class AppointmentService {
 
+	@Autowired
+	UserDAOImpl userDAOImpl;
+	
 	private AppointmentRepository appointmentRepository;
 	
 	@Autowired
@@ -23,14 +27,16 @@ public class AppointmentService {
 		// Set the status to available
 		appointment.setStatus("available");
 		appointment.setPatient(null);
-		this.appointmentRepository.save(appointment);
+		//this.appointmentRepository.save(appointment);
+		userDAOImpl.saveAppointment(appointment);
 	}
 	
 	// Patients book an appointment
 	public void bookAppointment(Appointment appointment) {
 		// Set the status to booked
 		appointment.setStatus("booked");
-		this.appointmentRepository.save(appointment);
+		//this.appointmentRepository.save(appointment);
+		userDAOImpl.saveAppointment(appointment);
 	}
 	
 	// Patients can cancel appointments
@@ -39,7 +45,8 @@ public class AppointmentService {
 		appointment.setStatus("available");
 		appointment.setPatient(null);
 
-		this.appointmentRepository.save(appointment);
+		//this.appointmentRepository.save(appointment);
+		userDAOImpl.saveAppointment(appointment);
 	}
 	// PAdmin can view all appointments
 	public List<Appointment> getAll(){

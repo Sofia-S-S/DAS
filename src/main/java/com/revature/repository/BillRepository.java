@@ -13,7 +13,7 @@ import com.revature.model.Bill;
 public interface BillRepository extends JpaRepository<Bill, Integer> {
 
 	// Send bill to the client and patients can pay their bills
-	<S extends Bill> S save(Bill bill);
+	<S extends Bill> S saveAndFlush(Bill bill);
 	
 	// Patients can view their bills
 	@Query(value = "SELECT b FROM Bill b WHERE b.user.userId = :userId")

@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Bill;
 import com.revature.repository.BillRepository;
+import com.revature.repository.UserDAO;
+import com.revature.repository.UserDAOImpl;
 
 @Service(value="billService")
 public class BillService {
 
 	private BillRepository billRepository;
+	@Autowired 
+	UserDAOImpl userDAOImpl;
 	
 	@Autowired
 	public void setBillRepository(BillRepository billRepository) {
@@ -24,6 +28,7 @@ public class BillService {
 //		return this.billRepository.findAllByUser(userId);
 //	}
 	public void createNewBill(Bill bill) {
-		this.billRepository.save(bill);
+		//this.billRepository.save(bill);
+		userDAOImpl.saveBill(bill);
 	}
 }

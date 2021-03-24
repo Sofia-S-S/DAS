@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.auth.model.MessageResponse;
 import com.revature.auth.model.RoleEnum;
-import com.revature.auth.repository.RoleRepository;
-import com.revature.auth.repository.UserRepository;
+import com.revature.repository.RoleRepository;
+import com.revature.repository.UserRepository;
 import com.revature.repository.AddressRepository;
+import com.revature.repository.UserDAOImpl;
+
 import com.revature.exception.NothingFoundException;
 import com.revature.model.Address;
 import com.revature.model.Appointment;
@@ -35,11 +37,7 @@ import com.revature.service.AdminService;
 
 @RestController(value = "adminController")
 @RequestMapping(path = "/admin")
-<<<<<<< HEAD
 @CrossOrigin(origins = "*")
-=======
-@CrossOrigin(origins = {"*"})
->>>>>>> 558882e62b61ad006ae1a9ab99217a3472cf9df9
 public class AdminController {
 	@Autowired
 	UserRepository userRepository;
@@ -51,6 +49,9 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@Autowired
+	UserDAOImpl userDAOImpl;
+	
+	@Autowired
 	public void setAdminService(AdminService adminService) {
 		this.adminService = adminService;
 	}
@@ -59,7 +60,8 @@ public class AdminController {
 	public ResponseEntity<MessageResponse> createDoctor(@RequestBody User doctor) {
 		System.out.println(doctor.getEmail());
 		Address addr = doctor.getAddress();
-		addr = addrRepository.save(addr);
+		//addr = addrRepository.save(addr);
+		addr = userDAOImpl.saveAddress(addr);
 		
 		String username = doctor.getUsername();
 		String email = doctor.getEmail();
@@ -119,7 +121,9 @@ public class AdminController {
 		newUser.setRoles(roles);
 		newUser.setRole(strRole);	
 		
-		userRepository.save(newUser);
+		//userRepository.save(newUser);
+		userDAOImpl.save(newUser);
+		
 		return ResponseEntity.ok(new MessageResponse("Doctor registered successfully!"));
 	}
 	

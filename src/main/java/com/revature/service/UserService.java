@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.auth.repository.UserRepository;
+import com.revature.repository.UserDAOImpl;
+import com.revature.repository.UserRepository;
 import com.revature.model.User;
 
 
@@ -13,6 +14,8 @@ import com.revature.model.User;
 public class UserService {
 	
 	private UserRepository userRepository;
+	@Autowired
+	UserDAOImpl	userDAOImpl;
 	
 	@Autowired
 	public void setUserRepository(UserRepository userRepository) {
@@ -22,6 +25,7 @@ public class UserService {
 		return this.userRepository.findAll();
 	}
 	public void createNewUser(User user) {
-		this.userRepository.save(user);
+		//this.userRepository.save(user);
+		userDAOImpl.save(user);
 	}
 }

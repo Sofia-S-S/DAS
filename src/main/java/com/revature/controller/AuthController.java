@@ -36,11 +36,12 @@ import com.revature.auth.model.RegisterRequest;
 import com.revature.auth.model.RoleEnum;
 import com.revature.auth.model.JSONWebTokenResponse;
 import com.revature.auth.model.MessageResponse;
-import com.revature.auth.repository.UserRepository;
-import com.revature.auth.repository.RoleRepository;
+import com.revature.repository.UserRepository;
+import com.revature.repository.RoleRepository;
 import com.revature.auth.service.UserDetailsInDAS;
 import com.revature.model.Role;
 import com.revature.model.User;
+import com.revature.repository.UserDAOImpl;
 
 /**
  * @author Jinwei Xiong
@@ -64,6 +65,9 @@ public class AuthController {
 	PasswordEncoder encoder;
 	@Autowired 
 	JSONWebTokens jwts;
+	
+	@Autowired 
+	UserDAOImpl userDAOImpl;
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
@@ -149,7 +153,9 @@ public class AuthController {
 		newUser.setRoles(roles);
 		newUser.setRole(strRole);
 		newUser.setProfilepicture(image.getBytes());
-		userRepository.save(newUser);
+		
+		//userRepository.save(newUser);
+		userDAOImpl.save(newUser);
 		
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}

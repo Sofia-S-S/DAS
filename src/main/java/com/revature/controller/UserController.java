@@ -16,11 +16,7 @@ import com.revature.service.UserService;
 
 @RestController(value="userController")
 @RequestMapping(path="/user")
-<<<<<<< HEAD
-@CrossOrigin(origins = {"*"})
-=======
 @CrossOrigin(origins = "*")
->>>>>>> 558882e62b61ad006ae1a9ab99217a3472cf9df9
 public class UserController {
 
 	private UserService userService;
